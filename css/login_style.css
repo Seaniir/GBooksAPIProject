@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Gotham-Ultra';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Gotham-Ultra'), url('../font/Gotham-Ultra.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Gotham-Medium';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Gotham-Medium'), url('../font/Gotham-Medium.otf') format('opentype');
+  }
+
+
+body{
+    background-color: #0a0b29;
+    font-family: "Gotham-Medium";
+    color: white;
+}
+
+.active-tab {
+    top: 360.5px;
+  }

@@ -8,14 +8,15 @@
   <title>Document</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="js/google_sign_in.js"></script>
-  <script src="js/search_books.js"></script>
+  <script src="../js/google_sign_in.js"></script>
+  <script src="../js/search_books.js"></script>
+  <script src="../js/get_books_from_library.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/index_style.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/library.css">
 </head>
 <body>
 <sidebar>
@@ -24,21 +25,20 @@
       <span class="shrink-btn">
         <i class='bx bx-chevron-left'></i>
       </span>
-      <a href="index.php">
-        <img src="./img/logo.png" class="logo" alt="">
+      <a href="../index.php">
+        <img src="../img/logo.png" class="logo" alt="">
       </a>
       <h3 class="hide">GBooksAPI</h3>
     </div>
     <div class="search">
-      <button id="test"><i class='bx bx-search'></i></button>
-      <input type="text" class="hide" id="books" placeholder="Titre / Auteur...">
+
     </div>
 
-    <div class="sidebar-links">
+    <div class="sidebar-links mt-5">
       <ul>
         <div class="active-tab"></div>
         <li class="tooltip-element" data-tooltip="0">
-          <a href="#" class="active" data-active="0">
+          <a href="../index.php" data-active="0">
             <div class="icon">
               <i class='bx bx-tachometer'></i>
               <i class='bx bxs-tachometer'></i>
@@ -46,11 +46,8 @@
             <span class="link hide">Accueil</span>
           </a>
         </li>
-        <?php
-        if(isset($_COOKIE['ID'])) {
-          ?>
         <li class="tooltip-element" data-tooltip="1">
-          <a href="php/library.php" data-active="1">
+          <a href="#" class="active" data-active="1">
             <div class="icon">
               <i class='bx bx-folder'></i>
               <i class='bx bxs-folder'></i>
@@ -58,9 +55,6 @@
             <span class="link hide">Bibliothèque</span>
           </a>
         </li>
-        <?php
-        }
-        ?>
         <li class="tooltip-element" data-tooltip="2">
           <a href="#" data-active="2">
             <div class="icon">
@@ -183,9 +177,48 @@ while ($row = mysqli_fetch_array($query))
   </nav>
 </sidebar>
 <div class="g-signin2" data-onsuccess="onSignIn" style="display: none;"></div>
-<div id="bookCardsContainer"></div>
+<select name="" id="orderChoose" class="orderBy">
+  <option value="order">A à Z</option>
+  <option value="orderInverse">Z à A</option>
+</select>
+<?php
+$name = $_COOKIE["ID"];
+$tbl = "tbl";
+$tbl .= $name;
+$mysqli = new mysqli("localhost", "root", "");
+$db = mysqli_select_db($mysqli, "libraries");
+?>
+<script>
+  var orderChoose = document.getElementById("orderChoose");
+  var order = orderChoose.value;
+  console.log(orderChoose.value);
+</script>
+<?php
+$query = mysqli_query($mysqli, "select * from ".$tbl." ORDER BY titles");
+?>
+
+<div id="bookCardsContainer" class="w-100">
+<?php
+$i = 0;
+while ($row = mysqli_fetch_array($query))
+{
+?>
+  
+        <div class="bookCards">
+            <h5><?php echo $row["titles"]; ?></h5>
+            <h5><?php echo $row["authors"]; ?></h5>
+            <h5><?php echo $row["genre"]; ?></h5>
+            <img class = "mt-3" id = "dynamic" src=<?php echo $row["img"]; ?> alt="">
+        </div>
+
+<?php
+        $i++;
+    }
+    
+?>
+</div>
 <!-- JavaScript Bundle with Popper -->
-<script src="js/app.js"></script>
+<script src="../js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,5 +1,3 @@
-var signedIn = false;
-
 function signOut() 
 {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -7,7 +5,7 @@ function signOut()
       console.log('User signed out.');
     });
     $.removeCookie('ID');
-    window.location.href = "index.php";
+    window.location.href = "/GBooksAPIProject/index.php";
   }
 
 function onSignIn(googleUser) 
@@ -17,7 +15,7 @@ function onSignIn(googleUser)
   var profile = googleUser.getBasicProfile();
   document.cookie = "ID =" + profile.getId();
   updateUserData(profile);
-}
+  }
 }
 
 function updateUserData(response) {

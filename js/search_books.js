@@ -5,10 +5,15 @@ var ISBNArray = new Array();
 var ISBN10Array = new Array();
 var ISBN13Array = new Array();
 var arrayDiv = new Array();
+var genreArray = new Array();
 
 $(document).ready(function() {
     $("#test").click(function() {
-          var search = $("#books").val();
+        for (var i = 0; i < arrayDiv.length; i++) {
+            $('.bookCards').remove();
+          }
+
+          var search = document.getElementById('books').value;
   
           if (search == '') 
           {
@@ -35,32 +40,37 @@ $(document).ready(function() {
                           titleArray[j] = data.items[j].volumeInfo.title;
                           authorsArray[j] = data.items[j].volumeInfo.authors;
                           imgArray[j] = data.items[j].volumeInfo.imageLinks;
-                          ISBNArray[j] = data.items[j].volumeInfo.industryIdentifiers;
+                          genreArray[j] = data.items[j].volumeInfo.categories;
                        }
                     console.log(data);
                     for(i = 0; i < data.items.length; i++)
                     {
-                    title = $('<h5 class = "list-group-item w-25">' + data.items[i].volumeInfo.title + '</h5>');
-                    author = $('<h5 class = "list-group-item w-25">' + data.items[i].volumeInfo.authors + '</h5>');
-                    img = $('<img class = "" id = "dynamic" height =100px width = 50px><br><a href =' + data.items[i].volumeInfo.infoLink + '><button id ="imagebutton" class="btn red aligning">INFO</button></a>');
                       // Je charge les données dans box
-                      if (data.items[i].volumeInfo.imageLinks === undefined) 
+                      if (data.items[i].volumeInfo.imageLinks === undefined || data.items[i].volumeInfo.categories == undefined) 
                       {
                           title = null;
                           author = null;
+                          genre = null;
                           img = null;
                           url = null;
                       } 
                       else 
                       {
+                        title = $('<h5>' + data.items[i].volumeInfo.title + '</h5>');
+                        author = $('<h5>' + data.items[i].volumeInfo.authors[0] + '</h5>');
+                        genre = $('<h5>' + data.items[i].volumeInfo.categories[0] + '</h5>');
+                        img = $('<img class = "mt-3" id = "dynamic"></img>');
+                        info = $('<button onClick="saveBook(' +i+')" id ="imagebutton" class="btn red aligning">+ Ajouter</button>');                        
                           arrayDiv[i] = document.createElement('div');
-                          arrayDiv[i].className = 'card w-25';
+                          arrayDiv[i].className = 'bookCards';
                           url = data.items[i].volumeInfo.imageLinks.thumbnail;
                           img.attr('src', url); //Attach the image url
                           title.appendTo(arrayDiv[i]);
                           author.appendTo(arrayDiv[i]);
+                          genre.appendTo(arrayDiv[i]);
                           img.appendTo(arrayDiv[i]);
-                          document.body.append(arrayDiv[i]);
+                          info.appendTo(arrayDiv[i]);
+                          document.getElementById("bookCardsContainer").appendChild(arrayDiv[i]);
                       }
                     }
                   },
@@ -76,3 +86,21 @@ $(document).ready(function() {
           }
       
     })});
+
+    function saveBook(i)
+{
+    console.log(genreArray[i][0]);
+    var stuff ={'key1':  titleArray[i], 'key2' : authorsArray[i][0], 'key3' : imgArray[i].thumbnail, 'key4' : genreArray[i][0]};
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        data: stuff,
+        url: 'php/save_books.php',
+        success: function(msg) {
+          if (msg.error == 1) {
+            alert('Something Went Wrong!');
+          } else {
+          }
+        }
+      });
+}

@@ -10,12 +10,14 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="js/google_sign_in.js"></script>
   <script src="js/search_books.js"></script>
+  <script src="js/form_sign_in.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/index_style.css">
+<link rel="stylesheet" href="css/login_style.css">
+<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 <sidebar>
@@ -24,21 +26,20 @@
       <span class="shrink-btn">
         <i class='bx bx-chevron-left'></i>
       </span>
-      <a href="index.php">
-        <img src="./img/logo.png" class="logo" alt="">
-      </a>
+      <img src="./img/logo.png" class="logo" alt="">
       <h3 class="hide">GBooksAPI</h3>
     </div>
+
     <div class="search">
-      <button id="test"><i class='bx bx-search'></i></button>
-      <input type="text" class="hide" id="books" placeholder="Titre / Auteur...">
+      <i class='bx bx-search'></i>
+      <input type="text" class="hide" placeholder="Titre / Auteur...">
     </div>
 
     <div class="sidebar-links">
       <ul>
         <div class="active-tab"></div>
         <li class="tooltip-element" data-tooltip="0">
-          <a href="#" class="active" data-active="0">
+          <a href="index.php" data-active="0">
             <div class="icon">
               <i class='bx bx-tachometer'></i>
               <i class='bx bxs-tachometer'></i>
@@ -50,7 +51,7 @@
         if(isset($_COOKIE['ID'])) {
           ?>
         <li class="tooltip-element" data-tooltip="1">
-          <a href="php/library.php" data-active="1">
+          <a href="#" data-active="1">
             <div class="icon">
               <i class='bx bx-folder'></i>
               <i class='bx bxs-folder'></i>
@@ -112,7 +113,7 @@
         if(isset($_COOKIE['ID'])) {
           ?>
         <li class="tooltip-element" data-tooltip="2">
-          <a href="#" onclick="signOut();" data-active="6">
+          <a href="#" data-active="6">
             <div class="icon">
               <i class='bx bx-log-out'></i>
               <i class='bx bx-log-out'></i>
@@ -127,7 +128,7 @@
         if(!isset($_COOKIE['ID'])) {
           ?>
         <li class="tooltip-element" data-tooltip="2">
-          <a href="login.php" data-active="6">
+          <a href="login.php" class="active" data-active="6">
             <div class="icon">
               <i class='bx bx-log-in'></i>
               <i class='bx bx-log-in'></i>
@@ -149,41 +150,34 @@
       <a href="#" class="account tooltip-element" data-tooltip="0">
         <i class='bx bx-user'></i>
       </a>
-      <?php
-if(isset($_COOKIE['ID'])) 
-{
-$mysqli = new mysqli("localhost", "root", "");
-$db = mysqli_select_db($mysqli, "users");
-$query = mysqli_query($mysqli, "select * from tbl_users");
-$ID = $_COOKIE["ID"];
-while ($row = mysqli_fetch_array($query))
-{
-  if ($row["fld_google_id"] == $ID)
-  {
-?>
-      <div class="admin-user tooltip-element" data-tooltip="1">
-        <div class="admin-profile hide">
-          <img src=<?php echo $row["fld_user_img"]; ?> alt="">
-          <div class="admin-info">
-            <h3><?php echo $row["fld_user_name"]; ?></h3>
-            <h5><?php echo $row["fld_user_email"]; ?></h5>
-          </div>
-        </div>
-      </div>
-      <div class="tooltip">
-        <span class="show"><?php echo $row["fld_user_name"]; ?></span>
-        <span>Logout</span>
-      </div>
-    </div>
-    <?php
-  }
-}
-}
-?>
   </nav>
 </sidebar>
-<div class="g-signin2" data-onsuccess="onSignIn" style="display: none;"></div>
-<div id="bookCardsContainer"></div>
+<article class="container my-auto">
+<form class="row g-3" action="sign-up.php" method = "post">
+  <div class="col-md-6">
+    <label for="inputID" class="form-label">Identifiant</label>
+    <input type="text" class="form-control" id="inputID" name="inputID">
+  </div>
+  <div class="col-md-6">
+    <label for="inputEmail" class="form-label">Email</label>
+    <input type="email" class="form-control" id="inputEmail" name="inputEmail">
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword" class="form-label">Mot de passe</label>
+    <input type="password" class="form-control" id="inputPassword" name="inputPassword">
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword" class="form-label">Vérifier le mot de passe</label>
+    <input type="password" class="form-control" id="inputPassword" name="inputPassword">
+  </div>
+  <div class="col-1">
+    <button type="submit" class="btn btn-primary">M'inscrire</button>
+  </div>
+  <div class="col-4">
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  </div>
+</form>
+</article>
 <!-- JavaScript Bundle with Popper -->
 <script src="js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>

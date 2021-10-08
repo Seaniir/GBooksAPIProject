@@ -36,9 +36,9 @@ body{
 
 .bookCards{
     position: relative;
-    flex: 1 0 calc(25% - 10px);
     margin: 2%;
     margin-top: 5%;
+    width: 29%;
     height: 250px;
     display: flex;
     flex-direction: column;
@@ -106,10 +106,10 @@ display: inline;
     border-radius: 15px;
 }
 
-.bookCards #imagebutton{
+.bookCards a{
     width: auto;
     position: absolute;
-    left: 56%;
+    left: 60%;
     top: 50%;
     color: white;
     background-color: rgb(111, 15, 68);
@@ -118,4 +118,17 @@ display: inline;
     padding-top: 5px;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.search{
+    display: none;
+}
+
+.active-tab {
+    top: 60.5px;
+  }
+  
+.orderBy{
+    display: inline;
+    height: 25px;
 }
