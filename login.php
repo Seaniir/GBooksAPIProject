@@ -17,7 +17,6 @@
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/login_style.css">
-<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 <sidebar>

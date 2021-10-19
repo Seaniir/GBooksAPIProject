@@ -163,7 +163,7 @@ while ($row = mysqli_fetch_array($query))
 ?>
       <div class="admin-user tooltip-element" data-tooltip="1">
         <div class="admin-profile hide">
-          <img src=<?php echo $row["fld_user_img"]; ?> alt="">
+          <img src=<?php echo $row["fld_user_img"]; ?> alt="" referrerpolicy="no-referrer">
           <div class="admin-info">
             <h3><?php echo $row["fld_user_name"]; ?></h3>
             <h5><?php echo $row["fld_user_email"]; ?></h5>

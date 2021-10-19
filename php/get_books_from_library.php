@@ -8,6 +8,7 @@
     $query = mysqli_query($mysqli, "select * from ".$tbl." ORDER BY titles");
 
     $i = 0;
+    $jArray = array ();
     $titleArray = array ();
     $authorsArray = array ();
     $genreArray = array ();
@@ -24,13 +25,14 @@
             $i++;
         }
 
-        $jTitleArray['json'] = json_encode($titleArray);
-        $jAuthorsArray['json'] = json_encode($authorsArray);
-        $jGenreArray['json'] = json_encode($genreArray);
-        $jImgArray['json'] = json_encode($imgArray);
+        $jTitleArray = $titleArray;
+        $jAuthorsArray = $authorsArray;
+        $jGenreArray = $genreArray;
+        $jImgArray = $imgArray;
         
-        echo json_encode($jTitleArray);
-        echo json_encode($jAuthorsArray);
-        echo json_encode($jGenreArray);
-        echo json_encode($jImgArray);
-        ?>
+        $jArray[1] = $jTitleArray;
+        $jArray[2] = $jAuthorsArray;
+        $jArray[3] = $jGenreArray;
+        $jArray[4] = $jImgArray;
+        echo json_encode($jArray);
+    ?>

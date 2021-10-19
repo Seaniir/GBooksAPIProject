@@ -10,7 +10,6 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="../js/google_sign_in.js"></script>
   <script src="../js/search_books.js"></script>
-  <script src="../js/get_books_from_library.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -157,7 +156,7 @@ while ($row = mysqli_fetch_array($query))
 ?>
       <div class="admin-user tooltip-element" data-tooltip="1">
         <div class="admin-profile hide">
-          <img src=<?php echo $row["fld_user_img"]; ?> alt="">
+          <img src=<?php echo $row["fld_user_img"]; ?> alt="" referrerpolicy="no-referrer">
           <div class="admin-info">
             <h3><?php echo $row["fld_user_name"]; ?></h3>
             <h5><?php echo $row["fld_user_email"]; ?></h5>
@@ -198,27 +197,10 @@ $query = mysqli_query($mysqli, "select * from ".$tbl." ORDER BY titles");
 ?>
 
 <div id="bookCardsContainer" class="w-100">
-<?php
-$i = 0;
-while ($row = mysqli_fetch_array($query))
-{
-?>
-  
-        <div class="bookCards">
-            <h5><?php echo $row["titles"]; ?></h5>
-            <h5><?php echo $row["authors"]; ?></h5>
-            <h5><?php echo $row["genre"]; ?></h5>
-            <img class = "mt-3" id = "dynamic" src=<?php echo $row["img"]; ?> alt="">
-        </div>
-
-<?php
-        $i++;
-    }
-    
-?>
 </div>
 <!-- JavaScript Bundle with Popper -->
 <script src="../js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<script src="../js/get_books_from_library.js"></script>
 </body>
 </html>
