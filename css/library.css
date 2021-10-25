@@ -91,6 +91,18 @@ display: inline;
     padding-right: 20px;
 }
 
+.bookCards a{
+    background-color: rgb(111, 15, 68);
+    padding: 0;
+    padding-top: 0.5%;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 89%;
+    top: 71.5%;
+}
+
 .bookCards h5{
     position: relative;
     top: -40px;
@@ -110,20 +122,6 @@ display: inline;
     width: auto;
     position: absolute;
     left: 56%;
-    top: 50%;
-    color: white;
-    background-color: rgb(111, 15, 68);
-    border-radius: 30px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.bookCards a{
-    width: auto;
-    position: absolute;
-    left: 60%;
     top: 50%;
     color: white;
     background-color: rgb(111, 15, 68);

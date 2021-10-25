@@ -6,6 +6,7 @@ var ISBN10Array = new Array();
 var ISBN13Array = new Array();
 var arrayDiv = new Array();
 var genreArray = new Array();
+var infoArray = new Array();
 
 $(document).ready(function() {
     $("#test").click(function() {
@@ -41,8 +42,9 @@ $(document).ready(function() {
                           authorsArray[j] = data.items[j].volumeInfo.authors;
                           imgArray[j] = data.items[j].volumeInfo.imageLinks;
                           genreArray[j] = data.items[j].volumeInfo.categories;
+                          infoArray[j] = data.items[j].volumeInfo.infoLink;
                        }
-                    console.log(data);
+                    console.log(infoArray);
                     for(i = 0; i < data.items.length; i++)
                     {
                       // Je charge les données dans box
@@ -71,7 +73,6 @@ $(document).ready(function() {
                           img.attr('src', url); //Attach the image url
                           title.appendTo(arrayDiv[i]);
                           author.appendTo(arrayDiv[i]);
-                          console.log(author)
                           genre.appendTo(arrayDiv[i]);
                           img.appendTo(arrayDiv[i]);
                           save.appendTo(arrayDiv[i]);
@@ -96,7 +97,7 @@ $(document).ready(function() {
     function saveBook(i)
 {
     console.log(genreArray[i][0]);
-    var stuff ={'key1':  titleArray[i], 'key2' : authorsArray[i][0], 'key3' : imgArray[i].thumbnail, 'key4' : genreArray[i][0]};
+    var stuff ={'key1':  titleArray[i], 'key2' : authorsArray[i][0], 'key3' : imgArray[i].thumbnail, 'key4' : genreArray[i][0], 'key5' : infoArray[i]};
     $.ajax({
         type: "POST",
         dataType: 'json',

@@ -13,6 +13,7 @@
     $authorsArray = array ();
     $genreArray = array ();
     $imgArray = array ();
+    $infoArray = array ();
     while ($row = mysqli_fetch_array($query))
     {
     ?>
@@ -21,6 +22,7 @@
        $authorsArray[$i] = $row["authors"]; 
        $genreArray[$i] = $row["genre"]; 
        $imgArray[$i] = $row["img"]; 
+       $infoArray[$i] = $row["infoLink"]; 
 
             $i++;
         }
@@ -29,10 +31,12 @@
         $jAuthorsArray = $authorsArray;
         $jGenreArray = $genreArray;
         $jImgArray = $imgArray;
+        $jInfoArray = $infoArray;
         
         $jArray[1] = $jTitleArray;
         $jArray[2] = $jAuthorsArray;
         $jArray[3] = $jGenreArray;
         $jArray[4] = $jImgArray;
+        $jArray[5] = $jInfoArray;
         echo json_encode($jArray);
     ?>

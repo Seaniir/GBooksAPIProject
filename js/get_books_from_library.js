@@ -1,6 +1,7 @@
 var titleArray = new Array();
 var authorsArray = new Array();
 var imgArray = new Array();
+var infoArray = new Array();
 var ISBNArray = new Array();
 var ISBN10Array = new Array();
 var ISBN13Array = new Array();
@@ -35,6 +36,7 @@ function change(response) {
         authorsArray[j] = response[2][j];
         genreArray[j] = response[3][j];
         imgArray[j] = response[4][j];
+        infoArray[j] = response[5][j];
     }
     responseLast = response;
     showBook(responseLast);
@@ -59,6 +61,7 @@ function showBook(response) {
         title = $('<h5>' + response[1][i] + '</h5>');
         author = $('<h5>' + response[2][i] + '</h5>');
         genre = $('<h5>' + response[3][i] + '</h5>');
+        info = $('<a class = "btn red aligning" id ="infobutton" href=' + response[5][i] + ' target="_blank"><i class="fas fa-info" style="color: #ffffff;"></i></h5>');                        
         img = $('<img class = "mt-3" id = "dynamic"></img>');
         save = $('<button onClick="deleteBook(' + i + ')" id ="imagebutton" class="btn red aligning">- Delete</button>');
         arrayDiv[i] = document.createElement('div');
@@ -70,6 +73,7 @@ function showBook(response) {
         genre.appendTo(arrayDiv[i]);
         img.appendTo(arrayDiv[i]);
         save.appendTo(arrayDiv[i]);
+        info.appendTo(arrayDiv[i]);
         document.getElementById("bookCardsContainer").appendChild(arrayDiv[i]);
     };
 }

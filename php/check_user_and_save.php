@@ -24,7 +24,8 @@ if(isset($_POST['uT']) && !empty($_POST['Xt']) && !empty($_POST['Re']))
 			titles VARCHAR(250) NOT NULL PRIMARY KEY,
 			authors VARCHAR(250) NOT NULL,
 			img VARCHAR(250) NOT NULL,
-			genre VARCHAR(250) NOT NULL
+			genre VARCHAR(250) NOT NULL,
+			infoLink VARCHAR(250) NOT NULL
 			)";
 			if ($conn->query($sql) === TRUE) {
 				$time = time();

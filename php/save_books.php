@@ -8,13 +8,14 @@
 	$authors = $_POST["key2"]; // Google ID
 	$img = $_POST["key3"]; // Google ID
 	$genre = $_POST["key4"]; // Google ID
+	$infoLink = $_POST["key5"];
 
 	//check if Google ID already exits
 	$stmt = $db->prepare("SELECT * FROM ".$tbl." WHERE titles=:titles");
 	$stmt->execute(array(':titles' => $title));
 
-		$insert_user_query = $db->prepare("INSERT INTO ".$tbl."(titles, authors, img, genre) VALUES(:titles, :authors, :img, :genre)");
-		$insert_user_query->execute(array(':titles' => $title, ':authors' => $authors, ':img' => $img, ':genre' => $genre));
+		$insert_user_query = $db->prepare("INSERT INTO ".$tbl."(titles, authors, img, genre, infoLink) VALUES(:titles, :authors, :img, :genre, :infoLink)");
+		$insert_user_query->execute(array(':titles' => $title, ':authors' => $authors, ':img' => $img, ':genre' => $genre, ':infoLink' => $infoLink));
 
 		echo json_encode($_POST);
 ?>
