@@ -187,11 +187,6 @@ $tbl .= $name;
 $mysqli = new mysqli("localhost", "root", "");
 $db = mysqli_select_db($mysqli, "libraries");
 ?>
-<script>
-  var orderChoose = document.getElementById("orderChoose");
-  var order = orderChoose.value;
-  console.log(orderChoose.value);
-</script>
 <?php
 $query = mysqli_query($mysqli, "select * from ".$tbl." ORDER BY titles");
 ?>

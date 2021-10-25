@@ -57,18 +57,24 @@ $(document).ready(function() {
                       else 
                       {
                         title = $('<h5>' + data.items[i].volumeInfo.title + '</h5>');
-                        author = $('<h5>' + data.items[i].volumeInfo.authors[0] + '</h5>');
+                        if(data.items[i].volumeInfo.authors[0].length < 16)
+                            author = $('<h5>' + data.items[i].volumeInfo.authors[0] + '</h5>');
+                        else
+                            author = $('<h5>' + data.items[i].volumeInfo.authors[0].substring(0,16) + "..." + '</h5>');
                         genre = $('<h5>' + data.items[i].volumeInfo.categories[0] + '</h5>');
                         img = $('<img class = "mt-3" id = "dynamic"></img>');
-                        info = $('<button onClick="saveBook(' +i+')" id ="imagebutton" class="btn red aligning">+ Ajouter</button>');                        
+                        save = $('<button onClick="saveBook(' +i+')" id ="imagebutton" class="btn red aligning">+ Ajouter</button>');                        
+                        info = $('<a class = "btn red aligning" id ="infobutton" href=' + data.items[i].volumeInfo.infoLink + '><i class="fas fa-info" style="color: #ffffff;"></i></h5>');                        
                           arrayDiv[i] = document.createElement('div');
                           arrayDiv[i].className = 'bookCards';
                           url = data.items[i].volumeInfo.imageLinks.thumbnail;
                           img.attr('src', url); //Attach the image url
                           title.appendTo(arrayDiv[i]);
                           author.appendTo(arrayDiv[i]);
+                          console.log(author)
                           genre.appendTo(arrayDiv[i]);
                           img.appendTo(arrayDiv[i]);
+                          save.appendTo(arrayDiv[i]);
                           info.appendTo(arrayDiv[i]);
                           document.getElementById("bookCardsContainer").appendChild(arrayDiv[i]);
                       }

@@ -1,13 +1,13 @@
 <?php
-if(isset($_POST['HU']) && !empty($_POST['HU']) && !empty($_POST['St']))
+if(isset($_POST['uT']) && !empty($_POST['Xt']) && !empty($_POST['Re']))
 {
 
 	include_once 'db.php';
 
-	$id = clean_post($_POST['sT']); // Google ID
-	$email = clean_post($_POST['St']); // Email ID
+	$id = clean_post($_POST['uT']); // Google ID
+	$email = clean_post($_POST['Xt']); // Email ID
 	$name = clean_post($_POST['Re']); // Name
-	$profile_pic = clean_post($_POST['kK']); //Profile Pic URL
+	$profile_pic = clean_post($_POST['nK']); //Profile Pic URL
 
 	//check if Google ID already exits
 	$stmt = $db->prepare("SELECT * FROM tbl_users WHERE fld_user_email=:email");
