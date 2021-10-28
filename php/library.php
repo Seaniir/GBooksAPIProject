@@ -10,6 +10,7 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="../js/google_sign_in.js"></script>
   <script src="../js/search_books.js"></script>
+  <script src="https://kit.fontawesome.com/7a55933cbe.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
