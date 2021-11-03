@@ -4,7 +4,7 @@ function signOut()
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
-    $.removeCookie('ID');
+    $.removeCookie('ID', { path: '/GBooksAPIProject' });
     window.location.href = "/GBooksAPIProject/index.php";
   }
 
